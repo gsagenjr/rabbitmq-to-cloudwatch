@@ -1,12 +1,22 @@
-from ubuntu:16.04
+# Pull consul-template from here
+FROM hashicorp/consul-template:alpine
+
+FROM alpine:3.7
 
 #install prerequisites
-RUN apt-get -q update && \
-    apt-get -q -y install python python-pip && \
-    pip install pyrabbit boto3 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/ /var/cache/apt/ /var/cache/debconf/
+RUN apk add -q --update --no-cache \
+    python \
+    py-pip \
+    && pip install pyrabbit boto3
 
-ADD publish_queue_size.py /opt
+# Add base script
+ADD rabbitmq-to-cloudwatch.py /rabbitmq-to-cloudwatch.py
+CMD "chmod +x /rabbitmq-to-cloudwatch.py"
 
-CMD "/opt/publish_queue_size.py"
+# Get consul-template
+COPY --from=0 /bin/consul-template /
+RUN chmod +x /consul-template
+
+# Add and run the entrypoint script
+ADD entrypoint.sh /
+ENTRYPOINT ["./entrypoint.sh"]

@@ -1,0 +1,17 @@
+{
+    "rabbitmq":{
+        "vhost": "/",
+        "host": "localhost",
+        "username": "dev",
+        "password": "dev",
+        "port": "15672",
+        "queue_names": ["exporter", "processing.audit"]
+    },
+    "sleep_interval_seconds":"60",
+    "aws":{
+        "secret_key":"C0olK3y",
+        "access_key":"SOMEKEY",
+        "region":"us-west-2",
+        "metric_name":"dev-rabbitmq-queue-sizes"
+    }
+}

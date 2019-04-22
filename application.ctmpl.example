@@ -1,0 +1,17 @@
+{
+    "rabbitmq":{
+        "vhost": "/",
+        "host": "{{key "rabbit-mq/host"}}",
+        "username": "{{key "rabbit-mq/user"}}",
+        "password": "{{key "rabbit-mq/password"}}",
+        "port": "{{key "rabbit-mq/port"}}",
+        "queue_names": ["exporter", "processing.audit", "summarizer"]
+    },
+    "sleep_interval_seconds":"120",
+    "aws":{
+        "secret_key":"{{key "aws/secret-key"}}",
+        "access_key":"{{key "aws/access-key"}}",
+        "region":"{{key "aws/region"}}",
+        "metric_name":"dev-rabbitmq-queue-sizes"
+    }
+}
