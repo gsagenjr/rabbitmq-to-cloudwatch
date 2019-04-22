@@ -1,4 +1,4 @@
-#RabbitMQ-To-CloudWatch (With Consul-Template)
+# RabbitMQ-To-CloudWatch (With Consul-Template)
 
 ## Intro
 This service is made to pull RabbitMQ queue sizes, and send them to AWS CloudWatch. This metric can then be used for alerts and as triggers for auto scaling.
